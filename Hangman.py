@@ -51,14 +51,20 @@ print(display)
 guesses = 7
 while "_" in display and guesses > 0:
     player_guess = input("Please enter the letter that you have guessed: ").upper()
+    
+    if  player_guess == chosen_word:
+        display = list(chosen_word)
+        continue # will skip and go to final part of the loop
 
-    if player_guess in chosen_word:
+    elif player_guess in chosen_word:
 
         for position in range(len(chosen_word)):
             letter = chosen_word[position]
             if player_guess == letter:
                 display[position] = player_guess
         print(f"You guessed correctly! The word looks like {display}")    # this outside for loop so that it doesn't print the message twice for when we have the same letter appear more than once in the word
+
+
     else:
         guesses -= 1
         print(f"Oops! That was an incorrect guess! Guesses left: {guesses} ")
